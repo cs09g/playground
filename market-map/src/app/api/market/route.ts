@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
+import path from 'path';
 
 type Market = {
   시장명: string;
@@ -25,7 +26,7 @@ type Market = {
 export async function GET() {
   const data: Market[] = [];
 
-  const file = await fs.readFile('./data/market_20241107.csv', 'utf8');
+  const file = await fs.readFile(path.join(process.cwd(), './data/market_20241107.csv'), 'utf8');
   file
     .split('\n')
     .slice(1, -1)
